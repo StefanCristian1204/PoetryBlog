@@ -2,6 +2,7 @@ import React, {useEffect, useState} from 'react';
 import {Button, Carousel, CarouselItem, Image} from "react-bootstrap";
 import axios from "axios";
 import {useParams} from "react-router-dom";
+import * as constants from "constants";
 
 function MoreLikeThis({currentPoem}) {
     const [poems, setPoems] = useState([]);
@@ -9,10 +10,13 @@ function MoreLikeThis({currentPoem}) {
     const handleSimilarPoems = async () => {
         try {
             const response = await axios.get("http://localhost:8080/api/poem/");
-            if (currentPoem.categories && currentPoem.categories.length > 0) {
+            const currentPoemCategories = currentPoem.categories;
+            if (currentPoemCategories && currentPoemCategories.length > 0) {
                 const filteredPoems = response.data.filter(poem =>
-                    poem.categories.some(category => currentPoem.categories.includes(category))
+                    poem.categories.some(category => currentPoemCategories.includes(category))
                 );
+                const index = filteredPoems.findIndex(obj => obj.id === currentPoem.id);
+                filteredPoems.splice(index, 1);
                 console.log(filteredPoems)
                 setPoems(filteredPoems);
             } else {

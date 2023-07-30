@@ -20,7 +20,7 @@ function Poem(props) {
     return (
         <Container>
             <Row>
-                <Col lg={"3"} className={"d-flex flex-column justify-content-center gap-5"}>
+                <Col lg={"3"} className={"d-flex flex-column justify-content-start gap-5"}>
                     <Row className={"backgroundDiv"}>
                         <div className={"h4"}>You can find me here</div>
                         <div className={"d-flex justify-content-between p-2 "}>
