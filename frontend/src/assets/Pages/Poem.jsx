@@ -5,6 +5,9 @@ import {Badge, Col, Container, Row} from "react-bootstrap";
 import "./Poem.css"
 import {SocialIcon} from "react-social-icons";
 import MoreLikeThis from "../Components/MoreLikeThis.jsx";
+import StarRating from "../Components/StarRating.jsx";
+import AddToCart from "../Components/AddToCart.jsx";
+import AddToFavorite from "../Components/AddToFavorite.jsx";
 
 function Poem(props) {
     const {id} = useParams();
@@ -33,7 +36,7 @@ function Poem(props) {
                         <MoreLikeThis currentPoem={poem}/>
                     </Row>
                 </Col>
-                <Col lg={"6"} >
+                <Col lg={"6"}>
                     <div className={"backgroundDiv"}>
                         <h1><Badge bg={"dark"}> {poem.title}</Badge></h1>
                         <h4 className={"text-end"}>{poem.author}</h4>
@@ -46,9 +49,9 @@ function Poem(props) {
                     </div>
                 </Col>
                 <Col lg={"3"}>
-                        <div>
-                            Star Rating, Add to Cart, Add to Favorites
-                        </div>
+                        <StarRating/>
+                        <AddToCart/>
+                        <AddToFavorite/>
                 </Col>
             </Row>
             <Row>

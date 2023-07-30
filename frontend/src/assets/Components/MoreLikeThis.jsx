@@ -17,7 +17,6 @@ function MoreLikeThis({currentPoem}) {
                 );
                 const index = filteredPoems.findIndex(obj => obj.id === currentPoem.id);
                 filteredPoems.splice(index, 1);
-                console.log(filteredPoems)
                 setPoems(filteredPoems);
             } else {
                 setPoems([currentPoem]);
