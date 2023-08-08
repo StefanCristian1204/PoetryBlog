@@ -21,16 +21,27 @@ public class Poem {
     @Enumerated(EnumType.STRING)
     private List<PoemEnum> categories = new ArrayList<>();
 
+    private Double rating;
+
     public Poem() {
     }
 
-    public Poem(String title, String author, List<String> line, List<PoemEnum> categories,String imageUrl,String date) {
+    public Poem(String title, String author, List<String> line, List<PoemEnum> categories,String imageUrl,String date,Double rating) {
         this.title = title;
         this.author = author;
         this.line = line;
         this.categories = categories;
         this.imageUrl = imageUrl;
         this.date = date;
+        this.rating=rating;
+    }
+
+    public Double getRating() {
+        return rating;
+    }
+
+    public void setRating(Double rating) {
+        this.rating = rating;
     }
 
     public String getDate() {

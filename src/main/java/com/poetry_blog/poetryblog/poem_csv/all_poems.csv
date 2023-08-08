@@ -1,4 +1,4 @@
-id,title,author,line,categories,image_url,date
+id,title,author,line,categories,image_url,date,rating
 1,Sare,Ion Șerban,{"Doua raze mari de soare,
 Blând topesc un gram de sare.,
 Sub priviri năucitoare,
@@ -18,7 +18,7 @@ Slab.cărunt.bătut de soare,
 Aspru.dur pe dinafară,
 Sarea lui acră și-amara,
 O poartă.dulce povară,
-În samar ca pe-o comoară !"},{"LOVE,NATURE,BEAUTY,DREAMS"},"https://3.bp.blogspot.com/-ngAh9YpVqlI/XIePSLNR62I/AAAAAAAAea0/mat7rXC6h-kyMsuRTGkuhB-mTpeftRrsACLcBGAs/s1600/iran-salt-dome.jpg","2021.12.16"
+În samar ca pe-o comoară !"},{"LOVE,NATURE,BEAUTY,DREAMS"},"https://3.bp.blogspot.com/-ngAh9YpVqlI/XIePSLNR62I/AAAAAAAAea0/mat7rXC6h-kyMsuRTGkuhB-mTpeftRrsACLcBGAs/s1600/iran-salt-dome.jpg","2021.12.16",4.5
 2,De departe,Ion Șerban,{"De departe In viata ta sunt spectator,
 Si am fost ieri. voi fi si maine.,
 De parca-as fi din viitor,
@@ -42,7 +42,7 @@ Era la moda. ca un slagar.,
 Zile trec si alte zile vin,
 Stau langa semineu si bag cate un lemn.,
 Din el. un rotocol. duhul lui Alladin,
-Ma uit la el si-astept un semn…"},{"LOVE,BEAUTY,DESIRE,CELEBRATION"},"https://storage.googleapis.com/yk-cdn/photos/pdp/michal-karcz/when-the-earth-is-far-away.jpg","2023.07.17"
+Ma uit la el si-astept un semn…"},{"LOVE,BEAUTY,DESIRE,CELEBRATION"},"https://storage.googleapis.com/yk-cdn/photos/pdp/michal-karcz/when-the-earth-is-far-away.jpg","2023.07.17",4.5
 3,Doar o privire,Ion Șerban,{"Treceam prin parc odinioara.,
 Cu parul nins.stateau pe-o banca,
 Cativa batrani .si intr-o doara,
@@ -90,7 +90,7 @@ Cand eu sunt rece.ea e calda !,
 Cand eu gandesc.ea ma asculta bland,
 De parca e facuta pentru mine,
 Iar de-s tacut.nu scoate un cuvant,
-Cine-ar putea sa ne dezbine ?"},{"LOVE,AGING,DESIRE,IDENTITY"},"https://t4.ftcdn.net/jpg/05/74/44/17/360_F_574441718_upRXbcQIHHqYOXiGP3ku81Na4y9ldB5t.jpg","2023.07.07"
+Cine-ar putea sa ne dezbine ?"},{"LOVE,AGING,DESIRE,IDENTITY"},"https://t4.ftcdn.net/jpg/05/74/44/17/360_F_574441718_upRXbcQIHHqYOXiGP3ku81Na4y9ldB5t.jpg","2023.07.07",4.5
 4,Despre catei !,Ion Șerban,{"Catei cu blana sau pufosi,
 Dulai sau pitbulli fiorosi,
 Latram in curti sau dupa hoti,
@@ -126,7 +126,7 @@ Hai ! Nu mai faceti mutre !,
 Ia stati cuminti la locul vostru !,
 Spuneti un pic de “Tatal nostru”,
 Sorbiti o gura de aghiasma,
-Si hai cu totii la o… clisma !"},{"RECOVERY,BIRTH,FAILURE"},"https://cdn.britannica.com/29/175329-050-10B5D3CD/scene-Lady-and-the-Tramp.jpg","2023.04.24"
+Si hai cu totii la o… clisma !"},{"RECOVERY,BIRTH,FAILURE"},"https://cdn.britannica.com/29/175329-050-10B5D3CD/scene-Lady-and-the-Tramp.jpg","2023.04.24",4.5
 5,Incertitudine,Ion Șerban,{"Nu stiu cine esti,
 Dar tot te iubesc !,
 Nu stiu ce-ti doresti,
@@ -186,7 +186,7 @@ Voi fi doar tain ?,
 Dar… chiar si asa,
 Nu pot sa m-opresc,
 Esti atat de gingasa,
-Si eu tot te iubesc !"},{"DEATH,AGING,RECOVERY,WAR,IMMORTALITY"},"https://news.uchicago.edu/sites/default/files/styles/full_width/public/images/2021-02/tightropecrop2.jpg?itok=6Eopxy1c","2023.04.23"
+Si eu tot te iubesc !"},{"DEATH,AGING,RECOVERY,WAR,IMMORTALITY"},"https://news.uchicago.edu/sites/default/files/styles/full_width/public/images/2021-02/tightropecrop2.jpg?itok=6Eopxy1c","2023.04.23",4.5
 6,Pamflet,Ion Șerban,{"Un caine slab si pricajit,
 Pe care l-am gasit pe-un camp,
 Avea piciorul grav ranit,
@@ -226,7 +226,7 @@ Unu-n pamant.altul fictiv !,
 Morala. In lume-s caini si  caini !,
 Unii sunt buni.altii turbati !,
 Oricat le-ai da la unii maini !,
-Cand sunt turbati nu-s educati !"},{"DREAMS,COMEDY,DESIRE"},"https://thumbs.dreamstime.com/b/portrait-funny-dog-behind-wheel-car-jack-russell-terrier-sunglasses-151057370.jpg","2023.04.09"
+Cand sunt turbati nu-s educati !"},{"DREAMS,COMEDY,DESIRE"},"https://thumbs.dreamstime.com/b/portrait-funny-dog-behind-wheel-car-jack-russell-terrier-sunglasses-151057370.jpg","2023.04.09",4.5
 7,Mixaj,Ion Șerban,{"Mi-e lacrima cat tine de grea,
 Noaptea si ziua-s impletite-n spirala.,
 Doar ceata-mprejur.nici buna.nici rea.,
@@ -254,4 +254,4 @@ Mi-s cartile goale.fara atu !,
 Simt ochii tai ca doua scantei,
 In lacrima ta cat mine de usoara ,
 Regret si parfum de tei,
-Si ceata ce ma-mpresoara …"},{"LOVE,IDENTITY,RECOVERY"},"https://images-stylist.s3-eu-west-1.amazonaws.com/app/uploads/2022/08/03100724/mixed-conflicting-emotions.jpg","2023.07.26"
+Si ceata ce ma-mpresoara …"},{"LOVE,IDENTITY,RECOVERY"},"https://images-stylist.s3-eu-west-1.amazonaws.com/app/uploads/2022/08/03100724/mixed-conflicting-emotions.jpg","2023.07.26",4.5
