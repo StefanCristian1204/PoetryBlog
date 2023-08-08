@@ -48,7 +48,7 @@ function MoreLikeThis({currentPoem}) {
                                     <p>{el.line && el.line[1]}</p>
                                     <p>{el.line && el.line[2]}</p>
                                 </div>
-                                <Button>Got to poem</Button>
+                                <Button href={`/poem/${el.id}`}>Got to poem</Button>
                             </Carousel.Caption>
                         </CarouselItem>
                     )

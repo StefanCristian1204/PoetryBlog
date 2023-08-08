@@ -49,7 +49,7 @@ function Poem(props) {
                     </div>
                 </Col>
                 <Col lg={"3"}>
-                        <StarRating/>
+                        <StarRating poemRating={poem.rating}/>
                         <AddToCart/>
                         <AddToFavorite/>
                 </Col>

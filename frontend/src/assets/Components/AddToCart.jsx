@@ -11,8 +11,10 @@ function AddToCart(props) {
             padding: "1em",
             margin: "1em"
         }}>
-            <Button variant="contained" endIcon={<ShoppingCart />}>
-                Add Poem To Cart
+            <Button onClick={() => {
+                alert('clicked');
+            }} variant="contained"  endIcon={<ShoppingCart />}>
+                <h6>Add Poem To Cart</h6>
             </Button>
         </div>
     );

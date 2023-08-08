@@ -1,4 +1,4 @@
 COPY poem(id,title, author, line, categories,image_url,date)
-    FROM 'D:\CodeCool\PersonalProjects\BlogTati\PoetryBlog\src\main\java\com\poetry_blog\poetryblog\poem_csv\all_poems.csv'
+    FROM 'D:\CodeCool\PersonalProjects\PoetryBlog\src\main\java\com\poetry_blog\poetryblog\poem_csv\all_poems.csv'
     DELIMITER ','
     CSV HEADER;
