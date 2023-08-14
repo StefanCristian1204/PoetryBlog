@@ -22,13 +22,17 @@
     "@mui/styled-engine-sc": "^5.12.0",
     "axios": "^1.4.0",
     "bootstrap": "^5.3.0",
+    "formik": "^2.4.3",
+    "mdb-react-ui-kit": "^6.2.0",
     "react": "^17.0.0 || ^18.0.0",
     "react-bootstrap": "^2.8.0",
     "react-dom": "^17.0.0 || ^18.0.0",
     "react-router-dom": "^6.14.2",
     "react-select": "^5.7.4",
     "react-social-icons": "^5.15.0",
-    "styled-components": "^5.3.11"
+    "styled-components": "^5.3.11",
+    "yup": "^1.2.0",
+    "yup-password": "^0.2.2"
   },
   "devDependencies": {
     "@types/react": "^18.2.15",

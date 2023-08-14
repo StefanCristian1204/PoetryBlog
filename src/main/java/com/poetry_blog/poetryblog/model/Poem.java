@@ -22,7 +22,6 @@ public class Poem {
     private List<PoemEnum> categories = new ArrayList<>();
 
     private Double rating;
-
     public Poem() {
     }
 
