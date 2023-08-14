@@ -10,7 +10,15 @@ import YupPassword from 'yup-password';
 
 YupPassword(yup);
 import {Container} from "react-bootstrap";
-import {faCity, faInbox, faKey, faMagnifyingGlass, faPassport, faUser} from "@fortawesome/free-solid-svg-icons";
+import {
+    faCity, faEye,
+    faEyeSlash,
+    faInbox,
+    faKey,
+    faMagnifyingGlass, faMessage,
+    faPassport,
+    faUser
+} from "@fortawesome/free-solid-svg-icons";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 
 function Register(props) {
@@ -29,6 +37,7 @@ function Register(props) {
         confirmPassword: yup.string().required().oneOf([yup.ref("password"), null], "Passwords must match"),
         terms: yup.bool().required().oneOf([true], 'Terms must be accepted'),
     });
+    const[showPassword,setShowPassword] = useState(false);
 
     return (
         <Container style={{
@@ -79,7 +88,6 @@ function Register(props) {
                                         onChange={handleChange}
                                         isValid={touched.lastName && !errors.lastName}
                                         isInvalid={!!errors.lastName}
-
                                     />
                                     <Form.Control.Feedback type="invalid">
                                         {errors.lastName}
@@ -130,7 +138,7 @@ function Register(props) {
                             <Form.Group as={Col} md="3" controlId="validationFormikEmail">
                                 <Form.Label>Email</Form.Label>
                                 <InputGroup hasValidation>
-                                    <InputGroup.Text id="inputGroupPrepend"><FontAwesomeIcon icon={faInbox}/></InputGroup.Text>
+                                    <InputGroup.Text id="inputGroupPrepend"><FontAwesomeIcon icon={faMessage}/></InputGroup.Text>
                                     <Form.Control
                                         type="email"
                                         placeholder="example@gmail.com"
@@ -151,7 +159,7 @@ function Register(props) {
                                 <InputGroup hasValidation>
                                     <InputGroup.Text id="inputGroupPrepend"><FontAwesomeIcon icon={faKey}/></InputGroup.Text>
                                 <Form.Control
-                                    type="password"
+                                    type={showPassword ? "text" : "password"}
                                     placeholder="Password"
                                     name="password"
                                     value={values.password}
@@ -160,6 +168,9 @@ function Register(props) {
                                     isValid={touched.password && !errors.password}
 
                                 />
+                                    <Button variant={"dark"} onClick={() => setShowPassword(!showPassword)}>
+                                        {showPassword ? <FontAwesomeIcon icon={faEyeSlash}/> : <FontAwesomeIcon icon={faEye}/>}
+                                    </Button>
                                 <Form.Control.Feedback type="invalid">
                                     {errors.password}
                                 </Form.Control.Feedback>
