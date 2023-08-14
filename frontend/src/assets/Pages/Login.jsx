@@ -1,13 +1,9 @@
 import React, {useState} from 'react';
 import {
     MDBContainer,
-    MDBInput,
-    MDBCheckbox,
-    MDBBtn,
-    MDBIcon, MDBCol, MDBRow
-}
-    from 'mdb-react-ui-kit';
-import {Button, Form, InputGroup} from "react-bootstrap";
+    MDBInput,MDBCol, MDBRow
+} from 'mdb-react-ui-kit';
+import {Button, Form} from "react-bootstrap";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faEye, faEyeSlash} from "@fortawesome/free-solid-svg-icons";
 import {Link} from "react-router-dom";
@@ -15,7 +11,24 @@ import {Link} from "react-router-dom";
 function Login(props) {
 
     const [showPassword, setShowPassword] = useState(false);
+    const [dataForm,setDataForm] = useState({
+        email: '',
+        password: ''
+    })
 
+    const handleSubmit = (e) =>{
+        e.preventDefault();
+        console.log(dataForm)
+    }
+
+    const handleOnChange = (key,value) =>{
+        setDataForm(
+            {
+                ...dataForm,
+                [key]:value
+            }
+        )
+    }
 
     return (
         <MDBContainer fluid style={{
@@ -23,7 +36,7 @@ function Login(props) {
             borderRadius: "1em",
 
         }}>
-            <Form onSubmit={() => console.log("test")}>
+            <Form onSubmit={(e) =>handleSubmit(e)}>
                 <MDBRow>
                     <MDBCol sm='6'>
                         <div className='d-flex flex-row pt-5 justify-content-center'>
@@ -32,11 +45,11 @@ function Login(props) {
                             </Link>
                         </div>
                         <div className='d-flex flex-column justify-content-center w-75 '>
-                            <MDBInput required={true} wrapperClass='mb-4 mx-5 w-100' label='Email address'
-                                      id='formControlLg' type='email' size="lg"/>
+                            <MDBInput onChange={(e)=>handleOnChange("email",e.target.value)} required={true} wrapperClass='mb-4 mx-5 w-100' label='Email address'
+                                      id='email' type='email' size="lg"/>
                             <div className={"d-flex"}>
-                                <MDBInput required={true} wrapperClass='mb-4 mx-5 w-100' label='Password'
-                                          id='formControlLg' type={showPassword ? "text" : "password"}
+                                <MDBInput onChange={(e)=>handleOnChange("password",e.target.value)} required={true} wrapperClass='mb-4 mx-5 w-100' label='Password'
+                                          id='password' type={showPassword ? "text" : "password"}
                                           size="lg"/>
                                 <Button className={"h-50"} variant={"dark"}
                                         onClick={() => setShowPassword(!showPassword)}>
@@ -48,8 +61,8 @@ function Login(props) {
                                     size='lg'>Login</Button>
                             <p className="small mb-5 pb-lg-3 ms-5"><a className="text-muted" href="#!">Forgot
                                 password?</a></p>
-                            <p className='ms-5'>Don't have an account? <a href="/register" className="link-info">Register
-                                here</a></p>
+                            <p className='ms-5'>Don't have an account? <Link to={"/register"}>Register
+                                here</Link></p>
                         </div>
                     </MDBCol>
                     <MDBCol sm='6' className={"p-3"}>
