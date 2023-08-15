@@ -7,9 +7,9 @@ import Row from 'react-bootstrap/Row';
 import {Formik} from "formik";
 import * as yup from 'yup';
 import YupPassword from 'yup-password';
-
+import "./Register.css"
 YupPassword(yup);
-import {Container} from "react-bootstrap";
+import {Container, Image} from "react-bootstrap";
 import {
     faCity, faEye,
     faEyeSlash,
@@ -37,7 +37,7 @@ function Register(props) {
         confirmPassword: yup.string().required().oneOf([yup.ref("password"), null], "Passwords must match"),
         terms: yup.bool().required().oneOf([true], 'Terms must be accepted'),
     });
-    const[showPassword,setShowPassword] = useState(false);
+    const [showPassword, setShowPassword] = useState(false);
 
     return (
         <Container style={{
@@ -61,6 +61,8 @@ function Register(props) {
             >
                 {({handleSubmit, handleChange, values, touched, errors}) => (
                     <Form noValidate onSubmit={handleSubmit}>
+                        <Row className={"registerImage"}>
+                        </Row>
                         <Row className="mb-3">
                             <Form.Group as={Col} md="4" controlId="validationFormik01">
                                 <Form.Label>First name</Form.Label>
@@ -119,7 +121,8 @@ function Register(props) {
                             <Form.Group as={Col} md="3" controlId="validationFormik03">
                                 <Form.Label>City</Form.Label>
                                 <InputGroup hasValidation>
-                                    <InputGroup.Text id="inputGroupPrepend"><FontAwesomeIcon icon={faCity}/></InputGroup.Text>
+                                    <InputGroup.Text id="inputGroupPrepend"><FontAwesomeIcon
+                                        icon={faCity}/></InputGroup.Text>
                                     <Form.Control
                                         type="text"
                                         placeholder="City"
@@ -138,7 +141,8 @@ function Register(props) {
                             <Form.Group as={Col} md="3" controlId="validationFormikEmail">
                                 <Form.Label>Email</Form.Label>
                                 <InputGroup hasValidation>
-                                    <InputGroup.Text id="inputGroupPrepend"><FontAwesomeIcon icon={faMessage}/></InputGroup.Text>
+                                    <InputGroup.Text id="inputGroupPrepend"><FontAwesomeIcon
+                                        icon={faMessage}/></InputGroup.Text>
                                     <Form.Control
                                         type="email"
                                         placeholder="example@gmail.com"
@@ -157,42 +161,45 @@ function Register(props) {
                             <Form.Group as={Col} md="3" controlId="validationFormik04">
                                 <Form.Label>Password</Form.Label>
                                 <InputGroup hasValidation>
-                                    <InputGroup.Text id="inputGroupPrepend"><FontAwesomeIcon icon={faKey}/></InputGroup.Text>
-                                <Form.Control
-                                    type={showPassword ? "text" : "password"}
-                                    placeholder="Password"
-                                    name="password"
-                                    value={values.password}
-                                    onChange={handleChange}
-                                    isInvalid={!!errors.password}
-                                    isValid={touched.password && !errors.password}
+                                    <InputGroup.Text id="inputGroupPrepend"><FontAwesomeIcon
+                                        icon={faKey}/></InputGroup.Text>
+                                    <Form.Control
+                                        type={showPassword ? "text" : "password"}
+                                        placeholder="Password"
+                                        name="password"
+                                        value={values.password}
+                                        onChange={handleChange}
+                                        isInvalid={!!errors.password}
+                                        isValid={touched.password && !errors.password}
 
-                                />
+                                    />
                                     <Button variant={"dark"} onClick={() => setShowPassword(!showPassword)}>
-                                        {showPassword ? <FontAwesomeIcon icon={faEyeSlash}/> : <FontAwesomeIcon icon={faEye}/>}
+                                        {showPassword ? <FontAwesomeIcon icon={faEyeSlash}/> :
+                                            <FontAwesomeIcon icon={faEye}/>}
                                     </Button>
-                                <Form.Control.Feedback type="invalid">
-                                    {errors.password}
-                                </Form.Control.Feedback>
+                                    <Form.Control.Feedback type="invalid">
+                                        {errors.password}
+                                    </Form.Control.Feedback>
                                 </InputGroup>
                             </Form.Group>
                             <Form.Group as={Col} md="3" controlId="validationFormik05">
                                 <Form.Label>Confirm Password</Form.Label>
                                 <InputGroup hasValidation>
-                                    <InputGroup.Text id="inputGroupPrepend"><FontAwesomeIcon icon={faKey}/></InputGroup.Text>
-                                <Form.Control
-                                    type="password"
-                                    placeholder="Confirm Password"
-                                    name="confirmPassword"
-                                    value={values.confirmPassword}
-                                    onChange={handleChange}
-                                    isInvalid={!!errors.confirmPassword}
-                                    isValid={touched.confirmPassword && !errors.confirmPassword}
-                                />
+                                    <InputGroup.Text id="inputGroupPrepend"><FontAwesomeIcon
+                                        icon={faKey}/></InputGroup.Text>
+                                    <Form.Control
+                                        type="password"
+                                        placeholder="Confirm Password"
+                                        name="confirmPassword"
+                                        value={values.confirmPassword}
+                                        onChange={handleChange}
+                                        isInvalid={!!errors.confirmPassword}
+                                        isValid={touched.confirmPassword && !errors.confirmPassword}
+                                    />
 
-                                <Form.Control.Feedback type="invalid">
-                                    {errors.confirmPassword}
-                                </Form.Control.Feedback>
+                                    <Form.Control.Feedback type="invalid">
+                                        {errors.confirmPassword}
+                                    </Form.Control.Feedback>
                                 </InputGroup>
                             </Form.Group>
                         </Row>
@@ -208,7 +215,7 @@ function Register(props) {
                                 id="validationFormik0"
                             />
                         </Form.Group>
-                        <Button type="submit">Submit form</Button>
+                        <Button type="submit">Register</Button>
                     </Form>
                 )}
             </Formik>
