@@ -1,6 +1,5 @@
 package com.poetry_blog.poetryblog;
 
-import com.poetry_blog.poetryblog.config.RsaKeyProperties;
 import com.poetry_blog.poetryblog.model.Role;
 import com.poetry_blog.poetryblog.model.User;
 import com.poetry_blog.poetryblog.repository.RoleRepository;
@@ -8,7 +7,6 @@ import com.poetry_blog.poetryblog.repository.UserRepository;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
@@ -17,7 +15,6 @@ import java.util.HashSet;
 import java.util.Set;
 
 @SpringBootApplication
-@EnableConfigurationProperties(RsaKeyProperties.class)
 public class PoetryBlogApplication {
 
 
