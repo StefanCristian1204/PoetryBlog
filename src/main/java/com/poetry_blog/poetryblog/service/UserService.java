@@ -39,7 +39,6 @@ public class UserService implements UserDetailsService {
                 .map(user -> {
                     user.setCity(newUser.getCity());
                     user.setEmail(newUser.getEmail());
-                    user.setRole(newUser.getRole());
                     user.setFirstName(newUser.getFirstName());
                     user.setLastName(newUser.getLastName());
                     return userRepository.save(user);

@@ -7,6 +7,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
+import java.util.Set;
 
 @Entity
 @Table(name = "user_table")
@@ -14,7 +15,13 @@ public class User implements UserDetails {
     @Id
     private Long id;
     private String username;
-    private String role;
+    @ManyToMany(fetch = FetchType.EAGER)
+    @JoinTable(
+            name = "user_role_junction",
+            joinColumns = {@JoinColumn(name = "user_id")},
+            inverseJoinColumns = {@JoinColumn(name = "role_id")}
+    )
+    private Set<Role> authorities;
     private String firstName;
     private String lastName;
     private String city;
@@ -34,10 +41,10 @@ public class User implements UserDetails {
     )
     private List<Poem> poemsFavList = new ArrayList<>();
 
-    public User(Long id, String username, String role, String firstName, String lastName, String city, String email, String password, List<Poem> poemsFavList) {
+    public User(Long id, String username, Set<Role> authorities, String firstName, String lastName, String city, String email, String password, List<Poem> poemsFavList) {
         this.id = id;
         this.username = username;
-        this.role = role;
+        this.authorities = authorities;
         this.firstName = firstName;
         this.lastName = lastName;
         this.city = city;
@@ -125,12 +132,8 @@ public class User implements UserDetails {
         this.username = username;
     }
 
-    public String getRole() {
-        return role;
-    }
-
-    public void setRole(String role) {
-        this.role = role;
+    public void setAuthorities(Set<Role> authorities) {
+        this.authorities = authorities;
     }
 
     @Override
