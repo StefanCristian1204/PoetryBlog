@@ -7,20 +7,16 @@ import java.util.List;
 
 @Entity
 public class Poem {
-
     @Id
     @GeneratedValue()
     private Long id;
     private String title;
     private String author;
     private List<String> line;
-
     private String imageUrl;
-
     private String date;
     @Enumerated(EnumType.STRING)
     private List<PoemEnum> categories = new ArrayList<>();
-
     private Double rating;
     public Poem() {
     }

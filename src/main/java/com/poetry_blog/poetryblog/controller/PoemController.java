@@ -10,7 +10,7 @@ import java.util.List;
 import java.util.stream.Stream;
 
 @RestController
-@CrossOrigin({"http://127.0.0.1:3000", "http://192.168.0.120:3000"})
+@CrossOrigin("http://127.0.0.1:3000")
 @RequestMapping("/api/poem")
 public class PoemController {
 

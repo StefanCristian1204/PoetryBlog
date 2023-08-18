@@ -12,8 +12,11 @@ public class User {
     private Long id;
     private String username;
     private String role;
+    private String firstName;
+    private String lastName;
+    private String city;
+    private String email;
     private String password;
-
     @ManyToMany(cascade = CascadeType.ALL)
     @JoinTable(
             name = "user_poem_map",
@@ -28,14 +31,51 @@ public class User {
     )
     private List<Poem> poemsFavList = new ArrayList<>();
 
-    public User(String username, String role, String password,List<Poem> poemsFavList) {
+    public User(Long id, String username, String role, String firstName, String lastName, String city, String email, String password, List<Poem> poemsFavList) {
+        this.id = id;
         this.username = username;
         this.role = role;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.city = city;
+        this.email = email;
         this.password = password;
         this.poemsFavList = poemsFavList;
     }
 
     public User() {
+    }
+
+    public String getFirstName() {
+        return firstName;
+    }
+
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
+
+    public String getLastName() {
+        return lastName;
+    }
+
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
+    }
+
+    public String getCity() {
+        return city;
+    }
+
+    public void setCity(String city) {
+        this.city = city;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
     }
 
     public List<Poem> getPoemsFavList() {
