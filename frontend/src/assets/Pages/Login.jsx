@@ -7,8 +7,10 @@ import {Button, Form} from "react-bootstrap";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faEye, faEyeSlash} from "@fortawesome/free-solid-svg-icons";
 import {Link} from "react-router-dom";
+import {useLogin} from "../../hooks/useLogin.jsx";
 
 function Login(props) {
+    const {login,error,isLoading} = useLogin();
 
     const [showPassword, setShowPassword] = useState(false);
     const [dataForm,setDataForm] = useState({
@@ -16,8 +18,9 @@ function Login(props) {
         password: ''
     })
 
-    const handleSubmit = (e) =>{
+    const handleSubmit = async (e) =>{
         e.preventDefault();
+        await  login(dataForm.email,dataForm.password);
         console.log(dataForm)
     }
 
@@ -46,7 +49,7 @@ function Login(props) {
                         </div>
                         <div className='d-flex flex-column justify-content-center w-75 '>
                             <MDBInput onChange={(e)=>handleOnChange("email",e.target.value)} required={true} wrapperClass='mb-4 mx-5 w-100' label='Email address'
-                                      id='email' type='email' size="lg"/>
+                                      id='email' type='text' size="lg"/>
                             <div className={"d-flex"}>
                                 <MDBInput onChange={(e)=>handleOnChange("password",e.target.value)} required={true} wrapperClass='mb-4 mx-5 w-100' label='Password'
                                           id='password' type={showPassword ? "text" : "password"}
