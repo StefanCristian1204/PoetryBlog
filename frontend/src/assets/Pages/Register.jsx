@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import Button from 'react-bootstrap/Button';
 import Col from 'react-bootstrap/Col';
 import Form from 'react-bootstrap/Form';
@@ -8,6 +8,7 @@ import {Formik} from "formik";
 import * as yup from 'yup';
 import YupPassword from 'yup-password';
 import "./Register.css"
+
 YupPassword(yup);
 import {Container, Image} from "react-bootstrap";
 import {
@@ -40,23 +41,28 @@ function Register(props) {
         terms: yup.bool().required().oneOf([true], 'Terms must be accepted'),
     });
     const [showPassword, setShowPassword] = useState(false);
-    const [error,setError] = useState("");
+    const [error, setError] = useState("");
+    const [success,setSuccess] = useState(false);
     const navigate = useNavigate();
     const onSubmit = async (values) => {
-       const result = await axios.post("http://localhost:8080/api/auth/register",
-           {
-               username: values.username,
-               firstName: values.firstName,
-               lastName: values.lastName,
-               city: values.city,
-               email: values.email,
-               password: values.password,
-           })
-        if(result.data === ""){
+        const result = await axios.post("http://localhost:8080/api/auth/register",
+            {
+                username: values.username,
+                firstName: values.firstName,
+                lastName: values.lastName,
+                city: values.city,
+                email: values.email,
+                password: values.password,
+            })
+        if (result.data === "") {
             setError("Username already exists")
-        }else {
+            setSuccess(false)
+        } else {
             setError("")
-            navigate("/login")
+            setSuccess(true)
+            setTimeout(() => {
+                navigate("/login");
+            }, 2000)
         }
     }
 
@@ -82,6 +88,7 @@ function Register(props) {
             >
                 {({handleSubmit, handleChange, values, touched, errors}) => (
                     <Form noValidate onSubmit={handleSubmit}>
+                        <h4 style={{color:"green"}}>{success ? "Register successfully" : ""}</h4>
                         <Row className={"registerImage"}>
                         </Row>
                         <Row className="mb-3">
@@ -136,7 +143,7 @@ function Register(props) {
                                         {errors.username}
                                     </Form.Control.Feedback>
                                 </InputGroup>
-                                <div style={{color:"red"}}>{error ? error : ""}</div>
+                                <div style={{color: "red"}}>{error ? error : ""}</div>
                             </Form.Group>
                         </Row>
                         <Row className="mb-3">
