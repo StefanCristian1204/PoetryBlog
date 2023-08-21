@@ -38,11 +38,17 @@ public class AuthenticationService {
         Role userRole = roleRepository.findByAuthority("USER").get();
         Set<Role> authorities = new HashSet<>();
         authorities.add(userRole);
-        return userRepository.save(new User(0L, body.getUsername(),
+        boolean availableUsername = userRepository.findByUsername(body.getUsername()).isPresent();
+        System.out.println("It is available : " + availableUsername);
+        if(!availableUsername){
+        return userRepository.save(new User(body.getUsername(),
                 authorities, body.getFirstName(), body.getLastName(),
                 body.getCity(), body.getEmail(), encodedPassword,
                 new ArrayList<>()
                 ));
+        }else {
+            return null;
+        }
     }
 
     public LoginResponseDTO loginUser(String username, String password) throws AuthenticationException {
@@ -54,7 +60,7 @@ public class AuthenticationService {
             String token = tokenService.generateJwt(auth);
             return new LoginResponseDTO(userRepository.findByUsername(username).get(),token);
         }catch (AuthenticationException e){
-            return new LoginResponseDTO(null,"");
+            return null;
         }
     }
 }

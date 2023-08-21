@@ -10,32 +10,19 @@ export const useLogin = () => {
     const login = async (username, password) => {
         setIsLoading(true);
         setError(null);
-
-        const response = await fetch("http://localhost:8080/api/auth/login", {
-            method: "POST",
-            body: JSON.stringify({
-                username,
-                password,
-            }),
-            headers: {
-                "Content-Type": "application/json",
-            },
-        });
-
-        // const response = await axios.post("http://localhost:8080/api/auth/login",JSON.stringify(username,password))
-        const json = await response.json();
-
-        if (!response.ok) {
+        try {
+            const response = await axios.post("http://localhost:8080/api/auth/login", {
+                    username,
+                    password
+            });
             setIsLoading(false);
-            setError(json.error);
-        }
-
-        if (response.ok) {
-            // save the user to local storage
-            localStorage.setItem("user", JSON.stringify(json));
-
-            //update the authContext
-            dispatch({ type: "LOGIN", payload: json });
+            setError("Username or Password not Valid");
+            localStorage.setItem('user', JSON.stringify(response.data));
+            dispatch({ type: "LOGIN", payload: response.data });
+        } catch (error) {
+            console.error(error);
+            setIsLoading(false);
+            setError("Username or Password not Valid");
         }
         setIsLoading(false);
     };

@@ -20,6 +20,8 @@ import {
     faUser
 } from "@fortawesome/free-solid-svg-icons";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
+import axios from "axios";
+import {useNavigate} from "react-router-dom";
 
 function Register(props) {
     const schema = yup.object().shape({
@@ -38,6 +40,25 @@ function Register(props) {
         terms: yup.bool().required().oneOf([true], 'Terms must be accepted'),
     });
     const [showPassword, setShowPassword] = useState(false);
+    const [error,setError] = useState("");
+    const navigate = useNavigate();
+    const onSubmit = async (values) => {
+       const result = await axios.post("http://localhost:8080/api/auth/register",
+           {
+               username: values.username,
+               firstName: values.firstName,
+               lastName: values.lastName,
+               city: values.city,
+               email: values.email,
+               password: values.password,
+           })
+        if(result.data === ""){
+            setError("Username already exists")
+        }else {
+            setError("")
+            navigate("/login")
+        }
+    }
 
     return (
         <Container style={{
@@ -47,7 +68,7 @@ function Register(props) {
         }} className={"p-5"}>
             <Formik
                 validationSchema={schema}
-                onSubmit={(values) => console.log(values)}
+                onSubmit={(values) => onSubmit(values)}
                 initialValues={{
                     firstName: '',
                     lastName: '',
@@ -115,6 +136,7 @@ function Register(props) {
                                         {errors.username}
                                     </Form.Control.Feedback>
                                 </InputGroup>
+                                <div style={{color:"red"}}>{error ? error : ""}</div>
                             </Form.Group>
                         </Row>
                         <Row className="mb-3">

@@ -21,7 +21,6 @@ function Login(props) {
     const handleSubmit = async (e) =>{
         e.preventDefault();
         await  login(dataForm.email,dataForm.password);
-        console.log(dataForm)
     }
 
     const handleOnChange = (key,value) =>{
@@ -60,6 +59,7 @@ function Login(props) {
                                         <FontAwesomeIcon icon={faEye}/>}
                                 </Button>
                             </div>
+                            <h6 style={{color:"white"}} className={`mx-5 p-3 ${error != null ? "bg-danger" : ""}  d-flex justify-content-center`}>{error!=null ? error : "" }</h6>
                             <Button type={"submit"} className="mb-4 px-5 mx-5 w-100" color='info'
                                     size='lg'>Login</Button>
                             <p className="small mb-5 pb-lg-3 ms-5"><a className="text-muted" href="#!">Forgot

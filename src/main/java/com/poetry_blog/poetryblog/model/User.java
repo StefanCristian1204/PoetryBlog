@@ -13,7 +13,9 @@ import java.util.Set;
 @Table(name = "user_table")
 public class User implements UserDetails {
     @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
+    @Column(unique = true)
     private String username;
     @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(
@@ -43,6 +45,17 @@ public class User implements UserDetails {
 
     public User(Long id, String username, Set<Role> authorities, String firstName, String lastName, String city, String email, String password, List<Poem> poemsFavList) {
         this.id = id;
+        this.username = username;
+        this.authorities = authorities;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.city = city;
+        this.email = email;
+        this.password = password;
+        this.poemsFavList = poemsFavList;
+    }
+
+    public User(String username, Set<Role> authorities, String firstName, String lastName, String city, String email, String password, List<Poem> poemsFavList) {
         this.username = username;
         this.authorities = authorities;
         this.firstName = firstName;
