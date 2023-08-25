@@ -13,18 +13,13 @@ function DashboardFilter({handleOptionChange, handleOptionDateChange, handleOpti
     const {user} = useAuthContext();
     const getAllPoemOptions = async () => {
         try {
-            const response = await fetch("http://localhost:8080/api/poem/categories", {
-                method: 'GET',
-                // mode: 'cors',
-                // headers: {
-                //     Authorization: `Bearer ${user.jwt}`
-                // }
+            const response = await axios.get("http://localhost:8080/api/poem/categories", {
+                headers: {
+                    Authorization: `Bearer ${user.jwt}`
+                }
             });
-            if (!response.ok) {
-                throw new Error(`Fetch request failed with status: ${response.status}`);
-            }
 
-            const data = await response.json();
+            const data = response.data;
             const newPoemOptions = data.map((el) => ({
                 value: el,
                 label: el,

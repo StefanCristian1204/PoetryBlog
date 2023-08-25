@@ -2,14 +2,20 @@ import React, {useEffect, useState} from 'react';
 import {Button, Carousel, CarouselItem, Image} from "react-bootstrap";
 import axios from "axios";
 import {useNavigate, useParams} from "react-router-dom";
+import {useAuthContext} from "../../hooks/useAuthContext.jsx";
 
 
 function MoreLikeThis({currentPoem}) {
     const [poems, setPoems] = useState([]);
+    const {user} = useAuthContext();
     const navigate = useNavigate();
     const handleSimilarPoems = async () => {
         try {
-            const response = await axios.get("http://localhost:8080/api/poem/");
+            const response = await axios.get("http://localhost:8080/api/poem/",{
+                headers: {
+                    Authorization: `Bearer ${user.jwt}`
+                }
+            });
             const currentPoemCategories = currentPoem.categories;
             if (currentPoemCategories && currentPoemCategories.length > 0) {
                 const filteredPoems = response.data.filter(poem =>

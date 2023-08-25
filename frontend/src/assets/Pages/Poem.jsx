@@ -8,11 +8,17 @@ import MoreLikeThis from "../Components/MoreLikeThis.jsx";
 import StarRating from "../Components/StarRating.jsx";
 import AddToCart from "../Components/AddToCart.jsx";
 import AddToFavorite from "../Components/AddToFavorite.jsx";
+import {useAuthContext} from "../../hooks/useAuthContext.jsx";
 
 function Poem(props) {
     const {id} = useParams();
+    const {user} = useAuthContext();
     const getPoemById = async () => {
-        const response = await axios.get(`http://localhost:8080/api/poem/${id}`);
+        const response = await axios.get(`http://localhost:8080/api/poem/${id}`,{
+            headers: {
+                Authorization: `Bearer ${user.jwt}`
+            }
+        });
         setPoem(response.data);
     }
     const [poem, setPoem] = useState({});

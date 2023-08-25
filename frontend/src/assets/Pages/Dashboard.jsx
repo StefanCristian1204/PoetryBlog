@@ -17,19 +17,13 @@ function Dashboard(props) {
     }, [])
     const getAllPoems = async () => {
         try {
-            const response = await fetch("http://localhost:8080/api/poem/", {
-                method: 'GET',
-                // mode: 'cors',
-                // headers: {
-                //     Authorization: `Bearer ${user.jwt}`
-                // }
+            const response = await axios.get("http://localhost:8080/api/poem/", {
+                headers: {
+                    Authorization: `Bearer ${user.jwt}`
+                }
             });
-            if (!response.ok) {
-                console.error("Failed to fetch poems. Status:", response.status);
-                return;
-            }
 
-            const data = await response.json();
+            const data = response.data;
             setPoems(data);
             setCopyPoem(data);
         } catch (error) {
