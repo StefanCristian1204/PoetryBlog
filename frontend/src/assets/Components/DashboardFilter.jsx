@@ -5,18 +5,31 @@ import axios from "axios";
 import "./DashboardFilter.css"
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faMagnifyingGlass} from "@fortawesome/free-solid-svg-icons";
+import {useAuthContext} from "../../hooks/useAuthContext.jsx";
 
 function DashboardFilter({handleOptionChange, handleOptionDateChange, handleOptionSearchChange}) {
 
     const [poemOptions, setPoemOptions] = useState([]);
-
+    const {user} = useAuthContext();
     const getAllPoemOptions = async () => {
         try {
-            const response = await axios.get("http://localhost:8080/api/poem/categories");
-            const newPoemOptions = response.data.map((el) => ({
+            const response = await fetch("http://localhost:8080/api/poem/categories", {
+                method: 'GET',
+                // mode: 'cors',
+                // headers: {
+                //     Authorization: `Bearer ${user.jwt}`
+                // }
+            });
+            if (!response.ok) {
+                throw new Error(`Fetch request failed with status: ${response.status}`);
+            }
+
+            const data = await response.json();
+            const newPoemOptions = data.map((el) => ({
                 value: el,
                 label: el,
             }));
+
             setPoemOptions((prev) => [...prev, ...newPoemOptions]);
         } catch (error) {
             console.error("Error fetching poem options:", error);

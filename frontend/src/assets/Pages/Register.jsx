@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import { useState} from 'react';
 import Button from 'react-bootstrap/Button';
 import Col from 'react-bootstrap/Col';
 import Form from 'react-bootstrap/Form';
@@ -10,21 +10,19 @@ import YupPassword from 'yup-password';
 import "./Register.css"
 
 YupPassword(yup);
-import {Container, Image} from "react-bootstrap";
+import {Container} from "react-bootstrap";
 import {
     faCity, faEye,
     faEyeSlash,
-    faInbox,
     faKey,
-    faMagnifyingGlass, faMessage,
-    faPassport,
+    faMessage,
     faUser
 } from "@fortawesome/free-solid-svg-icons";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import axios from "axios";
 import {useNavigate} from "react-router-dom";
 
-function Register(props) {
+function Register() {
     const schema = yup.object().shape({
         firstName: yup.string().required(),
         lastName: yup.string().required(),

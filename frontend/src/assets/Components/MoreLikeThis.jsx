@@ -1,12 +1,12 @@
 import React, {useEffect, useState} from 'react';
 import {Button, Carousel, CarouselItem, Image} from "react-bootstrap";
 import axios from "axios";
-import {useParams} from "react-router-dom";
-import * as constants from "constants";
+import {useNavigate, useParams} from "react-router-dom";
+
 
 function MoreLikeThis({currentPoem}) {
     const [poems, setPoems] = useState([]);
-
+    const navigate = useNavigate();
     const handleSimilarPoems = async () => {
         try {
             const response = await axios.get("http://localhost:8080/api/poem/");
@@ -48,7 +48,7 @@ function MoreLikeThis({currentPoem}) {
                                     <p>{el.line && el.line[1]}</p>
                                     <p>{el.line && el.line[2]}</p>
                                 </div>
-                                <Button href={`/poem/${el.id}`}>Got to poem</Button>
+                                <Button onClick={() => navigate(`/poem/${el.id}`)}>Got to poem</Button>
                             </Carousel.Caption>
                         </CarouselItem>
                     )

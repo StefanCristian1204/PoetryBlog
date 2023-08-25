@@ -3,21 +3,41 @@ import {Button, Card, Container} from "react-bootstrap";
 import "./Dashboard.css"
 import axios from "axios";
 import DashboardFilter from "../Components/DashboardFilter.jsx";
+import {useAuthContext} from "../../hooks/useAuthContext.jsx";
+import {Link, useNavigate} from "react-router-dom";
 
 function Dashboard(props) {
 
     const [poems, setPoems] = useState([]);
     const [copyPoem, setCopyPoem] = useState([]);
-
-
+    const {user} = useAuthContext();
+    const navigate = useNavigate();
     useEffect(() => {
         getAllPoems();
     }, [])
     const getAllPoems = async () => {
-        const respons = await axios.get("http://localhost:8080/api/poem/");
-        setPoems(respons.data)
-        setCopyPoem(respons.data)
-    }
+        try {
+            const response = await fetch("http://localhost:8080/api/poem/", {
+                method: 'GET',
+                // mode: 'cors',
+                // headers: {
+                //     Authorization: `Bearer ${user.jwt}`
+                // }
+            });
+            if (!response.ok) {
+                console.error("Failed to fetch poems. Status:", response.status);
+                return;
+            }
+
+            const data = await response.json();
+            setPoems(data);
+            setCopyPoem(data);
+        } catch (error) {
+            console.error("Error fetching poems:", error);
+        }
+    };
+
+
 
     const handleOptionChange = (selectedOptions) => {
         const selectedValues = selectedOptions.map(option => option.value);
@@ -81,7 +101,7 @@ function Dashboard(props) {
                                         </i>
                                     </q>
                                 </Card.Text>
-                                <Button size={"sm"} href={`/poem/${el.id}`}> Continue Reading</Button>
+                                <Button onClick={() => navigate(`/poem/${el.id}`)} size={"sm"} >Continue Reading</Button>
                             </div>
                         </Card.Body>
                     </Card>)

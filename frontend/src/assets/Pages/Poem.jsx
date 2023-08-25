@@ -11,14 +11,15 @@ import AddToFavorite from "../Components/AddToFavorite.jsx";
 
 function Poem(props) {
     const {id} = useParams();
-    const [poem, setPoem] = useState({});
-    useEffect(() => {
-        getPoemById();
-    }, [])
     const getPoemById = async () => {
         const response = await axios.get(`http://localhost:8080/api/poem/${id}`);
         setPoem(response.data);
     }
+    const [poem, setPoem] = useState({});
+    useEffect(() => {
+        getPoemById();
+    }, [getPoemById])
+
 
     return (
         <Container>

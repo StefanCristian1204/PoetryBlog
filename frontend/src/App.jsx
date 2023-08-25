@@ -8,6 +8,7 @@ import Register from "./assets/Pages/Register.jsx";
 import {useAuthContext} from "./hooks/useAuthContext.jsx";
 function App() {
     const {user} = useAuthContext();
+
   return (
     <>
         <Routes>
