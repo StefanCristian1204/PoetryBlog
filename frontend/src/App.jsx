@@ -6,6 +6,7 @@ import Poem from "./assets/Pages/Poem.jsx";
 import Login from "./assets/Pages/Login.jsx";
 import Register from "./assets/Pages/Register.jsx";
 import {useAuthContext} from "./hooks/useAuthContext.jsx";
+import Landing from "./assets/Pages/Landing.jsx";
 function App() {
     const {user} = useAuthContext();
 
@@ -16,6 +17,7 @@ function App() {
             <Route path={"/poem/:id"} element={user ? <Poem/> : <Navigate to={"/login"}/>}></Route>
             <Route path={"/login"} element={!user ? <Login/> : <Navigate to={"/dashboard"}/>}></Route>
             <Route path={"/register"} element={!user ? <Register/> : <Navigate to={"/dashboard"}/>}></Route>
+            <Route path={"/"} element={<Landing/>}/>
         </Routes>
     </>
   )
