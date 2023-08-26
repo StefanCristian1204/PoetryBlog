@@ -28,12 +28,16 @@ public class PoetryBlogApplication {
             if(roleRepository.findByAuthority("ADMIN").isPresent()) return;
 
             Role adminRole = roleRepository.save(new Role("ADMIN"));
-            roleRepository.save(new Role("USER"));
+            Role userRole = roleRepository.save(new Role("USER"));
+
 
             Set<Role> roles = new HashSet<>();
             roles.add(adminRole);
+            roles.add(userRole);
 
             User admin = new User(1L,"admin",roles,"Stefan","Serban","Constanta","stefan.serban@yahoo.com",passwordEncoder.encode("password"),new ArrayList<>());
+            admin.addAuthorities(adminRole);
+            admin.addAuthorities(userRole);
             userRepository.save(admin);
         };
     }

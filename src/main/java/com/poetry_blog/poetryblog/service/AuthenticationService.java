@@ -39,8 +39,8 @@ public class AuthenticationService {
         Set<Role> authorities = new HashSet<>();
         authorities.add(userRole);
         boolean availableUsername = userRepository.findByUsername(body.getUsername()).isPresent();
-        System.out.println("It is available : " + availableUsername);
         if(!availableUsername){
+            System.out.println("-------- Authorities are : " + authorities);
         return userRepository.save(new User(body.getUsername(),
                 authorities, body.getFirstName(), body.getLastName(),
                 body.getCity(), body.getEmail(), encodedPassword,
@@ -58,6 +58,7 @@ public class AuthenticationService {
                     new UsernamePasswordAuthenticationToken(username,password)
             );
             String token = tokenService.generateJwt(auth);
+            User user = userRepository.findByUsername(username).get();
             return new LoginResponseDTO(userRepository.findByUsername(username).get(),token);
         }catch (AuthenticationException e){
             return null;
