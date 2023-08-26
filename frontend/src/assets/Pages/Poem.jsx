@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react';
-import {useParams} from "react-router-dom";
+import {useNavigate, useParams} from "react-router-dom";
 import axios from "axios";
 import {Badge, Col, Container, Row} from "react-bootstrap";
 import "./Poem.css"
@@ -13,6 +13,7 @@ import {useAuthContext} from "../../hooks/useAuthContext.jsx";
 function Poem(props) {
     const {id} = useParams();
     const {user} = useAuthContext();
+    const navigate = useNavigate();
     const getPoemById = async () => {
         const response = await axios.get(`http://localhost:8080/api/poem/${id}`,{
             headers: {
@@ -24,7 +25,7 @@ function Poem(props) {
     const [poem, setPoem] = useState({});
     useEffect(() => {
         getPoemById();
-    }, [getPoemById])
+    }, [navigate])
 
 
     return (
