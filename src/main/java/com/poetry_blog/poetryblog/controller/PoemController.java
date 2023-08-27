@@ -18,8 +18,8 @@ public class PoemController {
     @Autowired
     private PoemService poemService;
     @PostMapping("/rating")
-    public Poem addRating(@RequestParam Long id,@RequestParam Double rating){
-        return poemService.addRating(id,rating);
+    public Poem addRating(@RequestParam Long id,@RequestParam Double rating,@RequestParam Long userId){
+        return poemService.addRating(id,rating,userId);
     }
     @PostMapping("/")
     public Poem addPoem(@RequestBody Poem poem){

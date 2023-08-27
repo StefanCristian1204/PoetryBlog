@@ -3,7 +3,9 @@ package com.poetry_blog.poetryblog.model;
 import jakarta.persistence.*;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 @Entity
 public class Poem {
@@ -19,10 +21,23 @@ public class Poem {
     private List<PoemEnum> categories = new ArrayList<>();
     private List<Double> rating = new ArrayList<>();
     private Double ratingAverage =0.0;
+    @ManyToMany(cascade = CascadeType.ALL)
+    @JoinTable(
+            name = "poem_rating_user_map",
+            joinColumns = @JoinColumn(
+                    name = "user_id",
+                    referencedColumnName = "id"
+            ),
+            inverseJoinColumns = @JoinColumn(
+                    name = "poem_id",
+                    referencedColumnName = "id"
+            )
+    )
+    private Set<User> userRatingList = new HashSet<>();
     public Poem() {
     }
 
-    public Poem(String title, String author, List<String> line, List<PoemEnum> categories,String imageUrl,String date,List<Double> rating,Double ratingAverage) {
+    public Poem(String title, String author, List<String> line, List<PoemEnum> categories,String imageUrl,String date,List<Double> rating,Double ratingAverage,Set<User> userRatingList) {
         this.title = title;
         this.author = author;
         this.line = line;
@@ -31,6 +46,15 @@ public class Poem {
         this.date = date;
         this.rating=rating;
         this.ratingAverage=ratingAverage;
+        this.userRatingList=userRatingList;
+    }
+
+    public Set<User> getUserRatingList() {
+        return userRatingList;
+    }
+
+    public void setUserRatingList(Set<User> userRatingList) {
+        this.userRatingList = userRatingList;
     }
 
     public Double getRatingAverage() {

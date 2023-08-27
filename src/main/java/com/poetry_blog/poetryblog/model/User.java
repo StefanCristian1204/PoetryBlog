@@ -17,8 +17,8 @@ public class User implements UserDetails {
     @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(
             name = "user_role_junction",
-            joinColumns = {@JoinColumn(name = "user_id")},
-            inverseJoinColumns = {@JoinColumn(name = "role_id")}
+            joinColumns = {@JoinColumn(name = "user_id",referencedColumnName = "id")},
+            inverseJoinColumns = {@JoinColumn(name = "role_id",referencedColumnName = "role_id")}
     )
     private Set<Role> authorities = new HashSet<>();
     private String firstName;
@@ -39,6 +39,8 @@ public class User implements UserDetails {
             )
     )
     private List<Poem> poemsFavList = new ArrayList<>();
+
+
 
     public User(Long id, String username, Set<Role> authorities, String firstName, String lastName, String city, String email, String password, List<Poem> poemsFavList) {
         this.id = id;

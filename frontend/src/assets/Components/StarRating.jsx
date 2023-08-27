@@ -6,26 +6,28 @@ import {useAuthContext} from "../../hooks/useAuthContext.jsx";
 function StarRating({poemRating,poemId}) {
     const [rating, setRating] = useState(poemRating || 0);
     const {user} = useAuthContext();
-
+    const[message,setMessage] = useState("")
     useEffect(() => {
         setRating(poemRating || 0);
     }, [poemRating]);
 
     const handleOnchange = async (newValue) => {
         try {
-            const response = await fetch(`http://localhost:8080/api/poem/rating?id=${poemId}&rating=${newValue}`, {
+            const response = await fetch(`http://localhost:8080/api/poem/rating?id=${poemId}&rating=${newValue}&userId=${user.user.id}`, {
                 method: 'POST',
                 headers: {
                     'Authorization': `Bearer ${user.jwt}`
                 }
             });
-
-            if (!response.ok) {
-                throw new Error('Network response was not ok');
+            const data = await response.json();
+            if(data == null){
+                setMessage("You already voted!")
+            }else {
+                setMessage("")
             }
-
             setRating(newValue);
         } catch (error) {
+            setMessage("You already voted!")
             console.error("Error fetching poems:", error);
         }
     }
@@ -49,6 +51,9 @@ function StarRating({poemRating,poemId}) {
                 size={"large"}
                 precision={0.5}
             />
+            <div>
+                <h4 style={{color:"red"}}>{message}</h4>
+            </div>
         </div>
     );
 }
