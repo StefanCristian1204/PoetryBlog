@@ -5,6 +5,7 @@ import axios from "axios";
 import DashboardFilter from "../Components/DashboardFilter.jsx";
 import {useAuthContext} from "../../hooks/useAuthContext.jsx";
 import {Link, useNavigate} from "react-router-dom";
+import NavbarComponent from "../Components/NavbarComponent.jsx";
 
 function Dashboard(props) {
 
@@ -66,6 +67,7 @@ function Dashboard(props) {
 
     return (
         <Container>
+            <NavbarComponent/>
             <DashboardFilter handleOptionChange={handleOptionChange} handleOptionDateChange={handleOptionDateChange}
                              handleOptionSearchChange={handleOptionSearchChange}/>
             <Container className={"d-grid gap-4 justify-content-center"}

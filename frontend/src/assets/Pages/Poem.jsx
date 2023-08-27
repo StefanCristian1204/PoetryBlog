@@ -9,6 +9,7 @@ import StarRating from "../Components/StarRating.jsx";
 import AddToCart from "../Components/AddToCart.jsx";
 import AddToFavorite from "../Components/AddToFavorite.jsx";
 import {useAuthContext} from "../../hooks/useAuthContext.jsx";
+import NavbarComponent from "../Components/NavbarComponent.jsx";
 
 function Poem(props) {
     const {id} = useParams();
@@ -30,6 +31,7 @@ function Poem(props) {
 
     return (
         <Container>
+            <NavbarComponent/>
             <Row>
                 <Col lg={"3"} className={"d-flex flex-column justify-content-start gap-5"}>
                     <Row className={"backgroundDiv"}>
