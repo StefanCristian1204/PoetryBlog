@@ -17,7 +17,10 @@ public class PoemController {
 
     @Autowired
     private PoemService poemService;
-
+    @PostMapping("/rating")
+    public Poem addRating(@RequestParam Long id,@RequestParam Double rating){
+        return poemService.addRating(id,rating);
+    }
     @PostMapping("/")
     public Poem addPoem(@RequestBody Poem poem){
        return poemService.addPoem(poem);
@@ -39,4 +42,5 @@ public class PoemController {
                 .toList();
        return poemEnums;
     }
+
 }

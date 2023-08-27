@@ -17,11 +17,12 @@ public class Poem {
     private String date;
     @Enumerated(EnumType.STRING)
     private List<PoemEnum> categories = new ArrayList<>();
-    private Double rating;
+    private List<Double> rating = new ArrayList<>();
+    private Double ratingAverage =0.0;
     public Poem() {
     }
 
-    public Poem(String title, String author, List<String> line, List<PoemEnum> categories,String imageUrl,String date,Double rating) {
+    public Poem(String title, String author, List<String> line, List<PoemEnum> categories,String imageUrl,String date,List<Double> rating,Double ratingAverage) {
         this.title = title;
         this.author = author;
         this.line = line;
@@ -29,13 +30,22 @@ public class Poem {
         this.imageUrl = imageUrl;
         this.date = date;
         this.rating=rating;
+        this.ratingAverage=ratingAverage;
     }
 
-    public Double getRating() {
+    public Double getRatingAverage() {
+        return ratingAverage;
+    }
+
+    public void setRatingAverage(Double ratingAverage) {
+        this.ratingAverage = ratingAverage;
+    }
+
+    public List<Double> getRating() {
         return rating;
     }
 
-    public void setRating(Double rating) {
+    public void setRating(List<Double> rating) {
         this.rating = rating;
     }
 

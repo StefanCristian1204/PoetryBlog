@@ -24,4 +24,17 @@ public class PoemService {
     public Poem getPoem(Long id) {
         return poemRepository.findById(id).orElse(new Poem());
     }
+
+    public Poem addRating(Long poemId,Double newRating) {
+        Poem poem = poemRepository.findById(poemId).orElse(null);
+        List<Double> allRatings  = poem.getRating();
+        allRatings.add(newRating);
+        int sum = 0;
+        for (double number : allRatings){
+            sum += number;
+        }
+        poem.setRatingAverage((double) (sum/allRatings.size()));
+        poemRepository.save(poem);
+        return poem;
+    }
 }
