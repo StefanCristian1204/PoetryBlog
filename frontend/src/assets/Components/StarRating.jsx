@@ -3,7 +3,7 @@ import {Box, Rating, Stack, Typography} from "@mui/material";
 import axios from "axios";
 import {useAuthContext} from "../../hooks/useAuthContext.jsx";
 
-function StarRating({poemRating,poemId}) {
+function StarRating({poemRating,poemId,allRatings}) {
     const [rating, setRating] = useState(poemRating || 0);
     const {user} = useAuthContext();
     const[message,setMessage] = useState("")
@@ -43,6 +43,7 @@ function StarRating({poemRating,poemId}) {
         >
             <Typography component={"legend"}>
                 <h4>Rate poem</h4>
+                <h6>({allRatings}) ratings</h6>
             </Typography>
             <Rating
                 name={"rate_poem"}
